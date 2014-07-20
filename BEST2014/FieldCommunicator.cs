@@ -10,7 +10,7 @@ namespace BEST2014
 {
     public class FieldCommunicator
     {
-        private List<Field> fields;
+        private List<Field> fields = new List<Field>();
 
         public int Count
         {
@@ -93,7 +93,7 @@ namespace BEST2014
 
         void AddField(IPAddress address)
         {
-            Field f = new Field(Count, address);
+            Field f = new Field(Count, address, new UdpClientWrapper());
             fields.Add(f);
         }
 

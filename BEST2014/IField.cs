@@ -20,9 +20,9 @@ namespace BEST2014
         string LastMessage { get; }
 
         string Read();
-        async Task<string> ReadAsync();
+        Task<string> ReadAsync();
 
         void Reset();
-        async Task ResetAsync();
+        Task ResetAsync();
     }
 }

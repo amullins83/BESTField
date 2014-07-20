@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BEST2014", "BEST2014\BEST2014.csproj", "{2C24DBD4-AD8F-4168-9C36-B71FCF4D37B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{88BB2B83-1C69-4041-BF7C-4001579E5CBC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBestCommunicator", "TestBestCommunicator\TestBestCommunicator.csproj", "{C7218706-FE19-4487-A6AA-8C520FB0C907}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{2C24DBD4-AD8F-4168-9C36-B71FCF4D37B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C24DBD4-AD8F-4168-9C36-B71FCF4D37B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C24DBD4-AD8F-4168-9C36-B71FCF4D37B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7218706-FE19-4487-A6AA-8C520FB0C907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7218706-FE19-4487-A6AA-8C520FB0C907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7218706-FE19-4487-A6AA-8C520FB0C907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7218706-FE19-4487-A6AA-8C520FB0C907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,7 +31,7 @@ namespace BEST2014
 
     public class Field : IField
     {
-        public Field(int id, IPAddress address)
+        public Field(int id, IPAddress address, IUdpClient client)
         {
             Id = id;
             Address = address;
@@ -39,7 +39,9 @@ namespace BEST2014
 
             Port = FieldMap.Port(Id);
 
-            client = new UdpClient(Address.ToString(), Port);
+            client.Connect(Address, Port);
+            this.client = client;
+
             endPoint = new IPEndPoint(Address, Port);
         }
 
@@ -89,7 +91,7 @@ namespace BEST2014
             await client.SendAsync(ResetCommand, ResetCommandLength);
         }
 
-        private UdpClient client;
+        private IUdpClient client;
         private IPEndPoint endPoint;
         private byte[] buffer;
     }
