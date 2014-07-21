@@ -26,12 +26,12 @@ namespace BEST2014
 
         private object readField(int id)
         {
-            return fields[id].Query();
+            return fields[id - 1].Query();
         }
 
         private object validateIdThen(Validated f, int id)
         {
-            if (id >= 0 && id < Count)
+            if (isInRange(id))
             {
                 return f(id);
             }
@@ -41,13 +41,13 @@ namespace BEST2014
             }
         }
 
-        private bool isInRange(int id) { return id >= 0 && id < Count; }
+        private bool isInRange(int id) { return id >= 1 && id <= Count; }
 
         public async Task<string> ReadFieldAsync(int id)
         {
             if(isInRange(id))
             {
-                return await fields[id].QueryAsync();
+                return await fields[id - 1].QueryAsync();
             }
             else
             {
@@ -59,7 +59,7 @@ namespace BEST2014
         {
             if(isInRange(id))
             {
-                fields[id].Reset();
+                fields[id - 1].Reset();
             }
         }
 
@@ -67,7 +67,7 @@ namespace BEST2014
         {
             if(isInRange(id))
             {
-                await fields[id].ResetAsync();
+                await fields[id - 1].ResetAsync();
             }
         }
 
@@ -78,7 +78,7 @@ namespace BEST2014
 
         private object getLastMessage(int id)
         {
-            return fields[id].LastMessage;
+            return fields[id - 1].LastMessage;
         }
 
         List<string> GetMessagesFromField(int id)
@@ -88,7 +88,7 @@ namespace BEST2014
 
         private object getMessages(int id)
         {
-            return fields[id].Messages;
+            return fields[id - 1].Messages;
         }
 
         void AddField(IPAddress address)
@@ -101,7 +101,7 @@ namespace BEST2014
         {
            if(isInRange(id))
            {
-               fields.RemoveAt(id);
+               fields.RemoveAt(id - 1);
            }
         }
 

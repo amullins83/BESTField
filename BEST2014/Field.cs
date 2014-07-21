@@ -12,20 +12,15 @@ namespace BEST2014
     internal static class FieldMap
     {
         private static int[] portMap = new int[] {
-            3000,
-            3001,
-            3002,
-            3003,
-            3004,
-            3005,
-            3006,
-            3007,
-            3008
+            32250,
+            32251,
+            32252,
+            32253,
         };
 
         internal static int Port(int id)
         {
-            return portMap[id];
+            return portMap[id - 1];
         }
     }
 
