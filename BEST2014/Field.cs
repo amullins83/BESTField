@@ -61,34 +61,51 @@ namespace BEST2014
             }
         }
 
-        public string Read()
+        public string Query()
         {
             buffer = client.Receive(ref endPoint);
+            return processQueryBuffer(buffer);
+        }
+
+        public async Task<string> QueryAsync()
+        {
+            UdpReceiveResult result = await client.ReceiveAsync();
+            return processQueryBuffer(result.Buffer);
+        }
+
+        private string processQueryBuffer(byte[] buffer)
+        {
             string read = Encoding.UTF8.GetString(buffer);
             Messages.Add(read);
             return read;
         }
 
-        public async Task<string> ReadAsync()
-        {
-            UdpReceiveResult result = await client.ReceiveAsync();
-            string read = Encoding.UTF8.GetString(result.Buffer);
-            Messages.Add(read);
-            return read;
-        }
-
-        private static string ResetString = "reset;";
+        private static string ResetString = "RST";
         private static byte[] ResetCommand = Encoding.UTF8.GetBytes(ResetString.ToCharArray());
         private static int ResetCommandLength = ResetCommand.Length;
 
         public void Reset()
         {
             client.Send(ResetCommand, ResetCommandLength);
+            byte[] buffer = client.Receive(ref endPoint);
+            processResetResponse(buffer);
         }
 
         public async Task ResetAsync()
         {
             await client.SendAsync(ResetCommand, ResetCommandLength);
+            UdpReceiveResult result = await client.ReceiveAsync();
+            processResetResponse(result.Buffer);
+        }
+
+        private void processResetResponse(byte[] buffer)
+        {
+            string response = processQueryBuffer(buffer);
+            if (response != "RST")
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    "Did not get RST acknowledge: {0}", response);
+            }
         }
 
         private IUdpClient client;

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://bestinc.org/xml/schema/field-state" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DATA">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TIEBREAK">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="YELLOW" type="xs:unsignedByte" />
+              <xs:element name="RED" type="xs:unsignedByte" />
+              <xs:element name="BLUE" type="xs:unsignedByte" />
+              <xs:element name="GREEN" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SWSTATUS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="YELLOW" type="xs:unsignedByte" />
+              <xs:element name="RED" type="xs:unsignedByte" />
+              <xs:element name="BLUE" type="xs:unsignedByte" />
+              <xs:element name="GREEN" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DEVSTATUS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CONFIG" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

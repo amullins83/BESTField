@@ -19,7 +19,7 @@ namespace TestBestCommunicator
         private Field f;
         private IPAddress local = IPAddress.Parse("127.0.0.1");
         private MockUdpClient client = new MockUdpClient();
-        private string expectedSendString = "reset;";
+        private string expectedSendString = "RST";
 
         [SetUp]
         public void BeforeEach()
@@ -35,7 +35,9 @@ namespace TestBestCommunicator
 
         [Test]
         public void SendTest()
-        {            
+        {
+            client.ReceiveBytes = Encoding.UTF8.GetBytes("RST");
+
             f.Reset();
 
             client.SendBytes.Should()

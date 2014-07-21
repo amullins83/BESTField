@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<DATA xmlns="http://bestinc.org/xml/schema/field-state"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://bestinc.org/xml/schema/field-state FieldState.xsd" >
+  <TIEBREAK>
+	  <YELLOW>4</YELLOW>
+	  <RED>4</RED>
+	  <BLUE>1</BLUE>
+	  <GREEN>2</GREEN>
+  </TIEBREAK>
+  <SWSTATUS>
+	  <YELLOW>0</YELLOW>
+	  <RED>0</RED>
+	  <BLUE>1</BLUE>
+	  <GREEN>1</GREEN>
+  </SWSTATUS>
+  <DEVSTATUS>
+	  <CONFIG>1</CONFIG>
+  </DEVSTATUS>
+</DATA>

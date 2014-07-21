@@ -26,7 +26,7 @@ namespace BEST2014
 
         private object readField(int id)
         {
-            return fields[id].Read();
+            return fields[id].Query();
         }
 
         private object validateIdThen(Validated f, int id)
@@ -47,7 +47,7 @@ namespace BEST2014
         {
             if(isInRange(id))
             {
-                return await fields[id].ReadAsync();
+                return await fields[id].QueryAsync();
             }
             else
             {
