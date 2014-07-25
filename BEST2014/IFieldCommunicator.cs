@@ -10,8 +10,8 @@ namespace BEST2014
 {
     public interface IFieldCommunicator
     {
-        string ReadField(int id);
-        Task<string> ReadFieldAsync(int id);
+        FieldState ReadField(int id);
+        Task<FieldState> ReadFieldAsync(int id);
 
         void ResetField(int id);
         Task ResetFieldAsync(int id);
@@ -19,7 +19,7 @@ namespace BEST2014
         string GetLastMessageFromField(int id);
         List<string> GetMessagesFromField(int id);
 
-        void AddField(IPAddress address);
+        void AddField(IField field);
         void RemoveField(int id);
         IField PopField();
 

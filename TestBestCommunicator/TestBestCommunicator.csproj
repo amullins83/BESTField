@@ -62,6 +62,8 @@
       <HintPath>..\packages\ShouldFluent.1.1.19\lib\Should.Fluent.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -72,9 +74,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="MockField.cs" />
     <Compile Include="MockUdpClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestField.cs" />
+    <Compile Include="TestFieldCommunicator.cs" />
     <Compile Include="TestFieldState.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +94,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\FieldStateNotConfigured.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FieldStateInvalid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FieldStateValid.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\FieldStateValid.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

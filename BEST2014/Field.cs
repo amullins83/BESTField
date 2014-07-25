@@ -56,16 +56,22 @@ namespace BEST2014
             }
         }
 
-        public string Query()
+        private static string QueryString = "QRY";
+        private static byte[] QueryCommand = Encoding.UTF8.GetBytes(QueryString.ToCharArray());
+        private static int QueryCommandLength = QueryCommand.Length;
+
+        public FieldState Query()
         {
+            client.Send(QueryCommand, QueryCommandLength);
             buffer = client.Receive(ref endPoint);
-            return processQueryBuffer(buffer);
+            return new FieldState(processQueryBuffer(buffer));
         }
 
-        public async Task<string> QueryAsync()
+        public async Task<FieldState> QueryAsync()
         {
+            await client.SendAsync(QueryCommand, QueryCommandLength);
             UdpReceiveResult result = await client.ReceiveAsync();
-            return processQueryBuffer(result.Buffer);
+            return new FieldState(processQueryBuffer(result.Buffer));
         }
 
         private string processQueryBuffer(byte[] buffer)

@@ -19,8 +19,8 @@ namespace BEST2014
 
         string LastMessage { get; }
 
-        string Query();
-        Task<string> QueryAsync();
+        FieldState Query();
+        Task<FieldState> QueryAsync();
 
         void Reset();
         Task ResetAsync();

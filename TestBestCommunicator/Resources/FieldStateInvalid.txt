@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?> 
-<DATA xmlns="http://bestinc.org/xml/schema/field-state">
+﻿<DATA>
   <TIEBREAK>
 	  <YELLOW>4</YELLOW>
 	  <RED>4</RED>
@@ -14,5 +13,4 @@
   </SWSTATUS>
   <DEVSTATUS>
 	  <CONFIG>1</CONFIG>
-  </DEVSTATUS>
-</DATA>
+  </DEVSTATUS

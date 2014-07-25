@@ -11,6 +11,8 @@ using BEST2014;
 using System.Net;
 using System.Net.Sockets;
 
+using System.IO;
+
 namespace TestBestCommunicator
 {
     [TestFixture]
@@ -20,6 +22,7 @@ namespace TestBestCommunicator
         private IPAddress local = IPAddress.Parse("127.0.0.1");
         private MockUdpClient client = new MockUdpClient();
         private string expectedSendString = "RST";
+        private string expectedQueryString = "QRY";
 
         [SetUp]
         public void BeforeEach()
@@ -42,6 +45,21 @@ namespace TestBestCommunicator
 
             client.SendBytes.Should()
                 .Equal(Encoding.UTF8.GetBytes(expectedSendString));
+        }
+
+        [Test]
+        public void ReceiveTest()
+        {
+            var receiveString = File.ReadAllText("Resources/FieldStateValid.txt");
+            client.ReceiveBytes = Encoding.UTF8.GetBytes(receiveString);
+            FieldState expectedState = new FieldState(receiveString);
+
+            var fieldState = f.Query();
+
+            client.SendBytes.Should()
+                .Equal(Encoding.UTF8.GetBytes(expectedQueryString));
+
+            fieldState.ToString().Should().Equal(expectedState.ToString());
         }
     }
 }

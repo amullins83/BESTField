@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Net;
-
 namespace BEST2014
 {
     public class FieldCommunicator
     {
-        private List<Field> fields = new List<Field>();
+        private List<IField> fields = new List<IField>();
 
         public int Count
         {
@@ -19,9 +17,9 @@ namespace BEST2014
 
         private delegate object Validated(int id);
 
-        public string ReadField(int id)
+        public FieldState ReadField(int id)
         {
-            return (string)validateIdThen(readField, id);
+            return (FieldState)validateIdThen(readField, id);
         }
 
         private object readField(int id)
@@ -43,7 +41,7 @@ namespace BEST2014
 
         private bool isInRange(int id) { return id >= 1 && id <= Count; }
 
-        public async Task<string> ReadFieldAsync(int id)
+        public async Task<FieldState> ReadFieldAsync(int id)
         {
             if(isInRange(id))
             {
@@ -91,13 +89,12 @@ namespace BEST2014
             return fields[id - 1].Messages;
         }
 
-        void AddField(IPAddress address)
+        public void AddField(IField field)
         {
-            Field f = new Field(Count, address, new UdpClientWrapper());
-            fields.Add(f);
+            fields.Add(field);
         }
 
-        void RemoveField(int id)
+        public void RemoveField(int id)
         {
            if(isInRange(id))
            {
@@ -105,7 +102,7 @@ namespace BEST2014
            }
         }
 
-        IField PopField()
+        public IField PopField()
         {
             var last = fields.Last();
             fields.RemoveAt(Count - 1);

@@ -109,5 +109,18 @@ namespace BEST2014
 
             return new Quadrant(rank, isOn);
         }
+
+        public override string ToString()
+        {
+            if (IsConfigured)
+            {
+                return fieldElement.ToString();
+            }
+            else
+            {
+                return "<DATA>\r\n\t<DEVSTATUS>\r\n\t\t<CONFIG>0</CONFIG>" +
+                       "\r\n\t</DEVSTATUS>\r\n</DATA>";
+            }
+        }
     }
 }
