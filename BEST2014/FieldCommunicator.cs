@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BEST2014
 {
-    public class FieldCommunicator
+    public class FieldCommunicator : IFieldCommunicator
     {
         private List<IField> fields = new List<IField>();
 
@@ -79,7 +79,7 @@ namespace BEST2014
             return fields[id - 1].LastMessage;
         }
 
-        List<string> GetMessagesFromField(int id)
+        public List<string> GetMessagesFromField(int id)
         {
             return (List<string>)validateIdThen(getMessages, id);
         }

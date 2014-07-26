@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestField.cs" />
     <Compile Include="TestFieldCommunicator.cs" />
+    <Compile Include="TestFieldCommunicatorFactory.cs" />
     <Compile Include="TestFieldState.cs" />
   </ItemGroup>
   <ItemGroup>

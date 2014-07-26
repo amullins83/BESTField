@@ -21,34 +21,17 @@ BEST Robotics Competition tournament software module for communicating with fiel
     using BEST2014;
     using System.Net;
 
-2. Create your field objects using ID's 1 through 4 and the IP addresses of your field modules:
+2. Use the `FieldCommunicatorFactory` to create the communicator from IPAddresses:
 
-    Field field1 = new Field(1, IPAddress.Parse("192.168.1.199"));
+    var factory = new FieldCommunicatorFactory();
+    var communicator =
+        factory.CreateFromIPAddresses(IPAddress.Parse("192.168.1.1"));
 
-3. Instantiate your FieldCommunicator and add your fields to it:
+You can pass in multiple addresses. Only the first 4 will be used, as the Field
+Control software only allows 4 devices to be on the same network.
 
-    FieldCommunicator fc = new FieldCommunicator();
-    fc.AddField(field1);
-
-4. Query the state of your field:
-
-    FieldState state = fc.QueryField(1);
-
-5. Check to see if a valid state was returned:
-
-    if(state.IsConfigured)
-    {
-        // Valid data
-    }
-    else
-    {
-        // Something went wrong
-    }
-
-6. Get tie-breaker results
-
-   int blueRank = state.Blue.Rank;
-   bool greenSwitch = state.Green.IsOn;
+    var communicator =
+        factory.CreateFromIPAddresses(address1, address2, address3, address4);
 
 ##Testing
 
