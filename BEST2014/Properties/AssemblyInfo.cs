@@ -7,13 +7,13 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BEST2014")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("BESTFieldCommuicator")]
+[assembly: AssemblyDescription("Field Control Integration for BEST Robotics")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("BEST2014")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2014")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("BEST Robotics, Inc.")]
+[assembly: AssemblyProduct("BEST Field Communicator")]
+[assembly: AssemblyCopyright("Copyright © BRI 2014")]
+[assembly: AssemblyTrademark("BRI")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -31,16 +31,6 @@ using System.Windows;
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
 
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-    //(used if a resource is not found in the page, 
-    // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-    //(used if a resource is not found in the page, 
-    // app, or any theme specific resource dictionaries)
-)]
-
-
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
@@ -53,3 +43,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: GuidAttribute("50BDDB94-260E-4B3A-8FE6-3C7C79208E3C")]

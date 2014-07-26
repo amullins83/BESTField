@@ -88,9 +88,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BEST2014\BEST2014.csproj">
+    <ProjectReference Include="..\BEST2014\BEST2014FieldCommunicator.csproj">
       <Project>{2c24dbd4-ad8f-4168-9c36-b71fcf4d37b6}</Project>
-      <Name>BEST2014</Name>
+      <Name>BEST2014FieldCommunicator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
