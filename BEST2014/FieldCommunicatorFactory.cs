@@ -18,12 +18,38 @@ namespace BEST2014
         public IFieldCommunicator CreateWithIPAddresses(
             params IPAddress[] addresses)
         {
+            return createWithIPAddresses(addresses);
+        }
+
+        public IFieldCommunicator CreateWithIPAddresses(
+            params string[] addresses)
+        {
+            return createWithIPAddresses(
+                addresses.Select(a => IPAddress.Parse(a)));
+        }
+
+        public IFieldCommunicator CreateWithIPAddresses(
+            IEnumerable<IPAddress> addresses)
+        {
+            return createWithIPAddresses(addresses);
+        }
+
+        private IFieldCommunicator createWithIPAddresses(
+            IEnumerable<IPAddress> addresses)
+        {
             FieldCommunicator communicator = new FieldCommunicator();
-            for (int i = 0; i < 4 && i < addresses.Length; i++)
+            
+            int i = 0;
+            foreach (var address in addresses)
             {
-                Field f = new Field(i + 1, addresses[i],
+                if (i == 4)
+                {
+                    break;
+                }
+                Field f = new Field(i + 1, address,
                     new UdpClientWrapper());
                 communicator.AddField(f);
+                i++;
             }
 
             return communicator;

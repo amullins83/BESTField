@@ -58,5 +58,30 @@ namespace TestBestCommunicator
                 field.Address.Should().Equal(addresses[i]);
             }
         }
+
+        [Test]
+        public void TestCreateWithStrings()
+        {
+            string[] addresses = new string[4];
+
+            for(int i = 1; i <= 4; i++)
+            {
+                addresses[i - 1] =
+                    "192.168.1." + i.ToString();
+            }
+
+            fc = factory.CreateWithIPAddresses(
+                addresses);
+
+            fc.Should().Be.OfType<FieldCommunicator>();
+
+            fc.Count.Should().Equal(4);
+
+            for (int i = 3; i >= 0; i--)
+            {
+                var field = fc.PopField();
+                field.Address.ToString().Should().Equal(addresses[i]);
+            }
+        }
     }
 }

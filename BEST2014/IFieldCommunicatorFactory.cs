@@ -13,5 +13,9 @@ namespace BEST2014
         IFieldCommunicator Create();
         IFieldCommunicator CreateWithIPAddresses(
             params IPAddress[] addresses);
+        IFieldCommunicator CreateWithIPAddresses(
+            params string[] addresses);
+        IFieldCommunicator CreateWithIPAddresses(
+            IEnumerable<IPAddress> addresses);
     }
 }

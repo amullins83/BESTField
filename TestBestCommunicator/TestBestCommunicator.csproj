@@ -81,6 +81,7 @@
     <Compile Include="TestFieldCommunicator.cs" />
     <Compile Include="TestFieldCommunicatorFactory.cs" />
     <Compile Include="TestFieldState.cs" />
+    <Compile Include="TestUdp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
