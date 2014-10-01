@@ -1,0 +1,25 @@
+﻿<Window x:Class="BESTTieBreaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BESTTieBreaker"
+        xmlns:models="clr-namespace:BESTTieBreaker.Models"
+        xmlns:views="clr-namespace:BESTTieBreaker.Views"
+        xmlns:vms="clr-namespace:BESTTieBreaker.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+      <models:FieldCommunicatorModel x:Key="FieldModel"/>
+      <vms:ConnectionViewModel x:Key="ConnectionVM" Model="{StaticResource FieldModel}"/>
+      <vms:TieBreakerViewModel x:Key="TieBreakerVM" Model="{StaticResource FieldModel}"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <views:FieldConnectionControl ViewModel="{StaticResource ConnectionVM}"/>
+        <views:TieBreakerResult Grid.Column="1" ViewModel="{StaticResource TieBreakerVM}"/>
+    </Grid>
+</Window>

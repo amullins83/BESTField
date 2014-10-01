@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Net;
 
 namespace BEST2014
@@ -18,23 +14,17 @@ namespace BEST2014
         public IFieldCommunicator CreateWithIPAddresses(
             params IPAddress[] addresses)
         {
-            return createWithIPAddresses(addresses);
+            return this.CreateWithIPAddresses(addresses);
         }
 
         public IFieldCommunicator CreateWithIPAddresses(
             params string[] addresses)
         {
-            return createWithIPAddresses(
+            return this.CreateWithIPAddresses(
                 addresses.Select(a => IPAddress.Parse(a)));
         }
 
         public IFieldCommunicator CreateWithIPAddresses(
-            IEnumerable<IPAddress> addresses)
-        {
-            return createWithIPAddresses(addresses);
-        }
-
-        private IFieldCommunicator createWithIPAddresses(
             IEnumerable<IPAddress> addresses)
         {
             FieldCommunicator communicator = new FieldCommunicator();
