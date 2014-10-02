@@ -96,10 +96,12 @@ namespace BEST2014
 
         public void RemoveField(int id)
         {
-           if(isInRange(id))
-           {
-               fields.RemoveAt(id - 1);
-           }
+           fields.RemoveAll(f => f.Id == id);
+        }
+
+        public void RemoveField(string address)
+        {
+            fields.RemoveAll(f => f.Address.ToString() == address);
         }
 
         public IField PopField()

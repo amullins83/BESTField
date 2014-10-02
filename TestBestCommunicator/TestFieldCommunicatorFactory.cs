@@ -45,7 +45,7 @@ namespace TestBestCommunicator
                     IPAddress.Parse("192.168.1." + i.ToString());
             }
 
-            fc = factory.CreateWithIPAddresses(
+            fc = factory.Create(
                 addresses);
 
             fc.Should().Be.OfType<FieldCommunicator>();
@@ -70,7 +70,7 @@ namespace TestBestCommunicator
                     "192.168.1." + i.ToString();
             }
 
-            fc = factory.CreateWithIPAddresses(
+            fc = factory.Create(
                 addresses);
 
             fc.Should().Be.OfType<FieldCommunicator>();

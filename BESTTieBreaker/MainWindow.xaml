@@ -10,9 +10,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-      <models:FieldCommunicatorModel x:Key="FieldModel"/>
-      <vms:ConnectionViewModel x:Key="ConnectionVM" Model="{StaticResource FieldModel}"/>
-      <vms:TieBreakerViewModel x:Key="TieBreakerVM" Model="{StaticResource FieldModel}"/>
+      <vms:ConnectionViewModel x:Key="ConnectionVM"/>
+      <vms:TieBreakerViewModel x:Key="TieBreakerVM"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

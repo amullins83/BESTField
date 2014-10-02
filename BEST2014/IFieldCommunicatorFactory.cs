@@ -11,11 +11,13 @@ namespace BEST2014
     public interface IFieldCommunicatorFactory
     {
         IFieldCommunicator Create();
-        IFieldCommunicator CreateWithIPAddresses(
+        IFieldCommunicator Create(
             params IPAddress[] addresses);
-        IFieldCommunicator CreateWithIPAddresses(
+        IFieldCommunicator Create(
             params string[] addresses);
-        IFieldCommunicator CreateWithIPAddresses(
+        IFieldCommunicator Create(
             IEnumerable<IPAddress> addresses);
+        IFieldCommunicator Create(
+            IEnumerable<string> addresses);
     }
 }

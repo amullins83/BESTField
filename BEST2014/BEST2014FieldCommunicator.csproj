@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FieldCommunicatorFactory.cs" />
+    <Compile Include="FieldFactory.cs" />
     <Compile Include="IFieldCommunicatorFactory.cs" />
     <Compile Include="FieldState.cs" />
+    <Compile Include="IFieldFactory.cs" />
     <Compile Include="UdpClientWrapper.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FieldCommunicator.cs" />

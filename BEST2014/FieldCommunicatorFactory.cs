@@ -11,24 +11,52 @@ namespace BEST2014
             return new FieldCommunicator();
         }
 
-        public IFieldCommunicator CreateWithIPAddresses(
+        public IFieldCommunicator Create(
             params IPAddress[] addresses)
         {
-            return this.CreateWithIPAddresses(addresses);
+            return this.CreateFromEnumerableAddresses(addresses);
         }
 
-        public IFieldCommunicator CreateWithIPAddresses(
+        public IFieldCommunicator Create(
             params string[] addresses)
         {
-            return this.CreateWithIPAddresses(
-                addresses.Select(a => IPAddress.Parse(a)));
+            return this.CreateFromEnumerableStrings(addresses);
         }
 
-        public IFieldCommunicator CreateWithIPAddresses(
+        public IFieldCommunicator Create(
+            IEnumerable<string> addresses)
+        {
+            return this.CreateFromEnumerableStrings(addresses);
+        }
+
+        public IFieldCommunicator Create(
             IEnumerable<IPAddress> addresses)
         {
-            FieldCommunicator communicator = new FieldCommunicator();
-            
+            return CreateFromEnumerableAddresses(addresses);
+        }
+
+        private IPAddress AddressFromString(string address)
+        {
+            IPAddress ip;
+            if (IPAddress.TryParse(address, out ip))
+            {
+                return ip;
+            }
+
+            return null;
+        }
+
+        private IFieldCommunicator CreateFromEnumerableStrings(IEnumerable<string> addresses)
+        {
+            return this.CreateFromEnumerableAddresses(
+                addresses.Select(this.AddressFromString));
+        }
+
+        private IFieldCommunicator CreateFromEnumerableAddresses(IEnumerable<IPAddress> addresses)
+        {
+            var communicator = new FieldCommunicator();
+            var factory = new FieldFactory();
+
             int i = 0;
             foreach (var address in addresses)
             {
@@ -36,9 +64,8 @@ namespace BEST2014
                 {
                     break;
                 }
-                Field f = new Field(i + 1, address,
-                    new UdpClientWrapper());
-                communicator.AddField(f);
+
+                communicator.AddField(factory.Create(i + 1, address));
                 i++;
             }
 

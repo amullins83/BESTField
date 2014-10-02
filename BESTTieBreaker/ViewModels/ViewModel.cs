@@ -10,9 +10,5 @@
         {
             get { return BESTTieBreaker.ViewModels.ViewModel.Singleton; }
         }
-        
-        private ViewModel()
-        {
-        }
     }
 }

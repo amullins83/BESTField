@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 using NUnit.Framework;
 using Should.Fluent;
 
 using BEST2014;
 using System.Net;
-using System.Net.Sockets;
 using System.Xml.Linq;
 using System.IO;
 
@@ -27,7 +22,7 @@ namespace TestBestCommunicator
             XElement.Parse(File.ReadAllText(xmlPath));
 
         [SetUp]
-        public void beforeEach()
+        public void BeforeEach()
         {
             fieldStateElement = baseFieldStateElement;
                 
@@ -37,18 +32,19 @@ namespace TestBestCommunicator
             {
                 fields[i] = new MockField();
                 fields[i].Id = i + 1;
+                fields[i].Address = IPAddress.Parse("127.0.0." + i);
                 fc.AddField(fields[i]);
             }
         }
 
         [Test]
-        public void countTest()
+        public void CountTest()
         {
             fc.Count.Should().Equal(4);
         }
 
         [Test]
-        public void readTest()
+        public void ReadTest()
         {
             int i = 1;
             foreach (var field in fields)
@@ -63,13 +59,25 @@ namespace TestBestCommunicator
         }
 
         [Test]
-        public void resetTest()
+        public void ResetTest()
         {
             foreach (var field in fields)
             {
                 fc.ResetField(field.Id);
                 field.TimesResetCalled.Should().Equal(1);
             }
+        }
+
+        [Test]
+        public void RemoveByAddressTest()
+        {
+            foreach (var field in fields)
+            {
+                var address = field.Address;
+                var originalCount = fc.Count;
+                fc.RemoveField(address.ToString());
+                fc.Count.Should().Equal(originalCount - 1);
+            }            
         }
     }
 }
