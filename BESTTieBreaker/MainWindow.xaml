@@ -7,18 +7,28 @@
         xmlns:models="clr-namespace:BESTTieBreaker.Models"
         xmlns:views="clr-namespace:BESTTieBreaker.Views"
         xmlns:vms="clr-namespace:BESTTieBreaker.ViewModels"
+        xmlns:best="clr-namespace:BEST2014;assembly=BESTFieldCommunicator"
+        xmlns:test="clr-namespace:TestBestCommunicator;assembly=TestBestCommunicator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="1024">
     <Window.Resources>
-      <vms:ConnectionViewModel x:Key="ConnectionVM"/>
-      <vms:TieBreakerViewModel x:Key="TieBreakerVM"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/DefaultTheme.xaml"/>
+                <ResourceDictionary>
+                    <best:FieldFactory x:Key="Factory"/>
+                    <vms:FieldListViewModel x:Key="ConnectionVM" Factory="{StaticResource Factory}"/>
+                    <vms:TieBreakerViewModel x:Key="TieBreakerVM"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <views:FieldConnectionControl ViewModel="{StaticResource ConnectionVM}"/>
-        <views:TieBreakerResult Grid.Column="1" ViewModel="{StaticResource TieBreakerVM}"/>
+        </Grid.ColumnDefinitions> 
+        <views:FieldConnectionControl ViewModel="{StaticResource ConnectionVM}" x:Name="FieldConnection"/>
+        <views:TieBreakerResult Grid.Column="1" ViewModel="{StaticResource TieBreakerVM}" FieldModel="{Binding Selected, Source={StaticResource ConnectionVM}}"/>
     </Grid>
 </Window>

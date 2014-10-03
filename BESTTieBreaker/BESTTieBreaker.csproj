@@ -39,8 +39,10 @@
     <StyleCopTreatErrorsAsWarnings>False</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\FieldCommunicatorModel.cs" />
     <Compile Include="Models\FieldModel.cs" />
+    <Compile Include="Models\QuadrantResultModel.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\FieldSource.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Views\FieldConnectionControl.cs" />
     <Compile Include="Views\FieldControl.cs" />
     <Compile Include="Views\IPAddressControl.cs" />
+    <Compile Include="Views\ISelectable.cs" />
     <Compile Include="Views\TieBreakerResult.cs" />
     <Compile Include="Views\View.cs" />
     <Page Include="MainWindow.xaml">
@@ -86,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\DefaultTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -120,6 +128,10 @@
     <ProjectReference Include="..\BEST2014\BEST2014FieldCommunicator.csproj">
       <Project>{2c24dbd4-ad8f-4168-9c36-b71fcf4d37b6}</Project>
       <Name>BEST2014FieldCommunicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestBestCommunicator\TestBestCommunicator.csproj">
+      <Project>{c7218706-fe19-4487-a6aa-8c520fb0c907}</Project>
+      <Name>TestBestCommunicator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

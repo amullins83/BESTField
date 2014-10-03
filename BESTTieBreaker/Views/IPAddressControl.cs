@@ -1,8 +1,7 @@
 ﻿namespace BESTTieBreaker.Views
 {
+    using System.Net;
     using System.Windows;
-
-    using ViewModels;
 
     public class IPAddressControl : View
     {
@@ -29,6 +28,9 @@
         /// </summary>
         public static readonly DependencyProperty Octet4Property =
             DependencyProperty.Register("Octet4", typeof(string), typeof(IPAddressControl), new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty AddressProperty =
+            DependencyProperty.Register("Address", typeof(IPAddress), typeof(IPAddressControl), new PropertyMetadata(IPAddress.Loopback));
 
         /// <summary>
         /// Gets or sets the octet1 value
@@ -64,6 +66,15 @@
         {
             get { return (string)GetValue(Octet4Property); }
             set { SetCurrentValue(Octet4Property, value); }
-        } 
+        }
+
+        /// <summary>
+        /// Gets or sets the full IPv4 Address
+        /// </summary>
+        public IPAddress Address
+        {
+            get { return (IPAddress)GetValue(AddressProperty); }
+            set { SetCurrentValue(AddressProperty, value); }
+        }
     }
 }

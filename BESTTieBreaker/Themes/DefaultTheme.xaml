@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+                    xmlns:best="clr-namespace:BEST2014;assembly=BESTFieldCommunicator"
+                    xmlns:local="clr-namespace:BESTTieBreaker.Themes"
+                    xmlns:views="clr-namespace:BESTTieBreaker.Views"
+                    xmlns:vms="clr-namespace:BESTTieBreaker.ViewModels"
+                    xmlns:models="clr-namespace:BESTTieBreaker.Models">
+    <DataTemplate DataType="{x:Type models:FieldModel}">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Field "/>
+                <TextBlock Text="{Binding Id}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Address: "/>
+                <TextBlock Text="{Binding Address}"/>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <Style TargetType="{x:Type views:FieldControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:FieldControl}">
+                    <Grid>
+                        <Grid.Resources>
+                            <vms:IPv4ViewModel x:Key="addressVM"/>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Add a field" TextAlignment="Center" FontSize="24" Margin="0,10,0,0"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="ID:" Margin="5,15,5,0"/>
+                            <TextBox Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="24" Height="20" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Height="25">
+                            <TextBlock Text="Address:" Margin="5,3,5,3"/>
+                            <TextBox Text="{Binding Octet1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
+                            <TextBlock Text="." Margin="5,3,5,3"/>
+                            <TextBox Text="{Binding Octet2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
+                            <TextBlock Text="." Margin="5,3,5,3"/>
+                            <TextBox Text="{Binding Octet3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
+                            <TextBlock Text="." Margin="5,3,5,3"/>
+                            <TextBox Text="{Binding Octet4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30"/>
+                        </StackPanel>
+                        
+                        <Button Grid.Row="3" Name="Add">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click"
+                                                SourceObject="{Binding ElementName=Add}">
+                                    <ei:CallMethodAction MethodName="AddField"
+                                                         TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Text="Add"/>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type views:FieldConnectionControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:FieldConnectionControl}">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <views:FieldControl ViewModel="{Binding}"/>
+                        <ListBox Grid.Row="1" Name="FieldsList"
+                                 ItemsSource="{Binding Fields}"
+                                 SelectedItem="{Binding Selected, Mode=OneWayToSource}"/>
+                        <Button Grid.Row="2" Name="RemoveSelected">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click"
+                                SourceObject="{Binding ElementName=RemoveSelected}">
+                                    <ei:CallMethodAction MethodName="RemoveFields"
+                                         TargetObject="{Binding}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Text="Remove Selected"/>
+                        </Button>
+                    </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate DataType="{x:Type models:QuadrantResultModel}">
+        <Grid Height="125">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Rank}"
+                       Width="100"
+                       Foreground="DarkSlateGray"
+                       Background="White"
+                       VerticalAlignment="Stretch"
+                       FontFamily="Calibri"
+                       FontSize="36"
+                       TextAlignment="Center"
+                       Padding="0,20,0,20"/>
+            <Rectangle Grid.Column="1" Fill="{Binding Color}" Width="500" Height="125"/>
+        </Grid>
+    </DataTemplate>
+    <Style TargetType="{x:Type views:TieBreakerResult}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type views:TieBreakerResult}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Height="100">
+                            <TextBlock Text="Field " FontSize="42"/>
+                            <TextBlock Text="{Binding Id}" FontSize="42"/>
+                        </StackPanel>
+                        <ListBox Grid.Row="1" Name="Results" VerticalAlignment="Stretch"
+                                 ItemsSource="{Binding Results}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

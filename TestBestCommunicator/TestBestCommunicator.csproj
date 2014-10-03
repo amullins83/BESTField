@@ -84,6 +84,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MockField.cs" />
+    <Compile Include="MockFieldFactory.cs" />
     <Compile Include="MockUdpClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestField.cs" />

@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls;
 
+    using BEST2014;
     using ViewModels;
 
     public class FieldControl : View
@@ -13,7 +14,7 @@
         /// Dependency Property for controlling the Field ID
         /// </summary>
         public static readonly DependencyProperty IdProperty =
-            DependencyProperty.Register("Id", typeof(int), typeof(FieldControl), new PropertyMetadata(0));
+            DependencyProperty.Register("Id", typeof(int), typeof(FieldControl), new PropertyMetadata(1));
 
         /// <summary>
         /// Dependency Property for controlling the address
@@ -52,7 +53,7 @@
             if (this.ViewModel is IFieldListViewModel)
             {
                 var fieldListVM = (IFieldListViewModel)this.ViewModel;
-                fieldListVM.AddField(this.Id, this.Address);
+                fieldListVM.AddField();
                 var added = this.Added;
                 if (added != null)
                 {

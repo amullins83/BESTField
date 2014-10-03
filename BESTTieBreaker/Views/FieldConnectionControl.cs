@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BESTTieBreaker.Views
+﻿namespace BESTTieBreaker.Views
 {
+    using System.Windows.Controls;
+
+    using ViewModels;
+
+    /// <summary>
+    /// Control for connecting to Field devices
+    /// </summary>
     public class FieldConnectionControl : View
     {
     }

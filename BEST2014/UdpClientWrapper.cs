@@ -15,7 +15,17 @@ namespace BEST2014
 
         public byte[] Receive(ref IPEndPoint endpoint)
         {
-            return client.Receive(ref endpoint);
+            byte[] rec = null;
+            try
+            {
+                rec = client.Receive(ref endpoint);
+            }
+            catch (SocketException)
+            {
+
+            }
+
+            return rec;
         }
 
         public async Task<UdpReceiveResult> ReceiveAsync()

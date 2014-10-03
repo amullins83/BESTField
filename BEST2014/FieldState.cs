@@ -11,14 +11,18 @@ namespace BEST2014
 {
     public class Quadrant
     {
-        public Quadrant(int rank, bool isOn)
+        public Quadrant(int rank, bool isOn, string color)
         {
             Rank = rank;
             IsSwitchOn = isOn;
+            DidTrigger = rank < 4 || isOn;
+            Color = color;
         }
 
         public int Rank { get; private set; }
         public bool IsSwitchOn { get; private set; }
+        public bool DidTrigger { get; private set; }
+        public string Color { get; private set; }
     }
 
     public class FieldState
@@ -107,7 +111,7 @@ namespace BEST2014
                           .First(e => e.Name.LocalName == color)
                           .Value) > 0;
 
-            return new Quadrant(rank, isOn);
+            return new Quadrant(rank, isOn, color);
         }
 
         public override string ToString()

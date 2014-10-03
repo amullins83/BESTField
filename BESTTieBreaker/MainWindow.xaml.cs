@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace BESTTieBreaker
+﻿namespace BESTTieBreaker
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
