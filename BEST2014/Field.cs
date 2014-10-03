@@ -33,11 +33,15 @@ namespace BEST2014
             Messages = new List<string>();
 
             Port = FieldMap.Port(Id);
-
-            client.Connect(Address, Port);
             this.client = client;
 
-            endPoint = new IPEndPoint(Address, Port);
+            if (Address != null)
+            {
+                client.Connect(Address, Port);
+
+
+                endPoint = new IPEndPoint(Address, Port);
+            }
         }
 
         public int Id { get; private set; }

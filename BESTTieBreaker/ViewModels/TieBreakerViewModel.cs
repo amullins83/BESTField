@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Media;
     using System.Windows.Threading;
 
@@ -127,12 +128,17 @@
         /// </param>
         private void GetResults(object sender, EventArgs e)
         {
+           Task.Run(new Func<Task>(GetResultsInBackground));
+        }
+
+        private async Task GetResultsInBackground()
+        {
             if (this.field == null)
             {
                 return;
             }
 
-            var fieldResults = this.field.Query();
+            var fieldResults = await this.field.QueryAsync();
 
             if (fieldResults.IsConfigured)
             {
