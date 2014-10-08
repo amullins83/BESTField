@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Timers;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Media;
     using System.Windows.Threading;
 
     using BEST2014;
@@ -28,19 +30,14 @@
             new ObservableCollection<QuadrantResultModel>();
 
         /// <summary>
-        /// The UI thread dispatcher to handle PropertyChanged events
+        /// Interval timer for polling the field for results
         /// </summary>
-        private Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
-
-        /// <summary>
-        /// The query timer
-        /// </summary>
-        private Timer pollTimer;
+        private DispatcherTimer pollTimer;
 
         /// <summary>
         /// Error message to display
         /// </summary>
-        private string errorMessage = "No field connected";
+        private string errorMessage = null;
 
         /// <summary>
         /// Gets or sets the currently active field model
@@ -57,8 +54,6 @@
                 if (pollTimer != null)
                 {
                     pollTimer.Stop();
-                    pollTimer.Elapsed -= this.GetResults;
-                    pollTimer.Dispose();
                 }
 
                 SetProperty(ref this.fieldModel, value);
@@ -69,10 +64,12 @@
                 {
                     this.field = this.fieldModel.Field;
 
-                    this.pollTimer = new Timer(250.0);
-                    this.pollTimer.AutoReset = true;
-                    this.pollTimer.Elapsed += this.GetResults;
-                    this.pollTimer.Start();
+                    this.pollTimer =
+                        new DispatcherTimer(
+                            TimeSpan.FromMilliseconds(250),
+                            DispatcherPriority.Background,
+                            this.GetResults,
+                            Dispatcher.CurrentDispatcher);
                 }
             }
         }
@@ -131,35 +128,18 @@
         /// </param>
         private void GetResults(object sender, EventArgs e)
         {
+           Task.Run(new Func<Task>(GetResultsInBackground));
+        }
+
+        private async Task GetResultsInBackground()
+        {
             if (this.field == null)
             {
                 return;
             }
 
-            var fieldResults = this.field.Query();
+            var fieldResults = await this.field.QueryAsync();
 
-            this.dispatcher.BeginInvoke(
-                new Action<FieldState>(this.DisplayResults),
-                fieldResults);
-        }
-        
-        /// <summary>
-        /// Create a new QuadrantResultModel with the given color and state
-        /// </summary>
-        /// <param name="color">The background color for the model</param>
-        /// <param name="quad">The quadrant state for the model</param>
-        /// <returns></returns>
-        private QuadrantResultModel MakeQuadrant(string color, Quadrant quad)
-        {
-            return new QuadrantResultModel(color, quad.Rank, quad.IsSwitchOn, quad.DidTrigger);
-        }
-
-        /// <summary>
-        /// Updates display with new results
-        /// </summary>
-        /// <param name="fieldResults">The new field state</param>
-        private void DisplayResults(FieldState fieldResults)
-        {
             if (fieldResults.IsConfigured)
             {
                 this.ErrorMessage = null;
@@ -176,6 +156,17 @@
             {
                 this.ErrorMessage = "No results to display";
             }
+        }
+        
+        /// <summary>
+        /// Create a new QuadrantResultModel with the given color and state
+        /// </summary>
+        /// <param name="color">The background color for the model</param>
+        /// <param name="quad">The quadrant state for the model</param>
+        /// <returns></returns>
+        private QuadrantResultModel MakeQuadrant(string color, Quadrant quad)
+        {
+            return new QuadrantResultModel(color, quad.Rank, quad.IsSwitchOn, quad.DidTrigger);
         }
     }
 }
