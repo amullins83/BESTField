@@ -20,7 +20,7 @@
         /// <summary>
         /// The Id of the next Field Model to add
         /// </summary>
-        private int id;
+        private int id = 1;
 
         /// <summary>
         /// The factory used to create field objects from FieldModels
