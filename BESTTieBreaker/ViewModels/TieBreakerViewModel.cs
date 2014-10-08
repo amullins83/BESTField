@@ -37,7 +37,7 @@
         /// <summary>
         /// Error message to display
         /// </summary>
-        private string errorMessage = null;
+        private string errorMessage = "No field detected";
 
         /// <summary>
         /// Gets or sets the currently active field model
