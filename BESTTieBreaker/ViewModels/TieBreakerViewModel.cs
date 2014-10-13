@@ -140,9 +140,33 @@
 
             var fieldResults = await this.field.QueryAsync();
 
+            await this.MainDispatcher.BeginInvoke(
+                new Action<FieldState>(this.UpdateResults),
+                DispatcherPriority.Normal,
+                fieldResults);
+        }
+        
+        /// <summary>
+        /// Create a new QuadrantResultModel with the given color and state
+        /// </summary>
+        /// <param name="color">The background color for the model</param>
+        /// <param name="quad">The quadrant state for the model</param>
+        /// <returns></returns>
+        private QuadrantResultModel MakeQuadrant(string color, Quadrant quad)
+        {
+            return new QuadrantResultModel(color, quad.Rank, quad.IsSwitchOn, quad.DidTrigger);
+        }
+
+        /// <summary>
+        /// Update the field results
+        /// </summary>
+        /// <param name="fieldResults">The current field state</param>
+        private void UpdateResults(FieldState fieldResults)
+        {
             if (fieldResults.IsConfigured)
             {
                 this.ErrorMessage = null;
+
                 this.results.Clear();
 
                 var quadrants = new List<Quadrant> { fieldResults.Yellow, fieldResults.Red, fieldResults.Blue, fieldResults.Green };
@@ -156,17 +180,6 @@
             {
                 this.ErrorMessage = "No results to display";
             }
-        }
-        
-        /// <summary>
-        /// Create a new QuadrantResultModel with the given color and state
-        /// </summary>
-        /// <param name="color">The background color for the model</param>
-        /// <param name="quad">The quadrant state for the model</param>
-        /// <returns></returns>
-        private QuadrantResultModel MakeQuadrant(string color, Quadrant quad)
-        {
-            return new QuadrantResultModel(color, quad.Rank, quad.IsSwitchOn, quad.DidTrigger);
         }
     }
 }

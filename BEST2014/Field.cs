@@ -56,7 +56,14 @@ namespace BEST2014
         {
             get
             {
-                return Messages.Last();
+                if (Messages.Any())
+                {
+                    return Messages.Last();
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
