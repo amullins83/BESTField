@@ -171,7 +171,7 @@
 
                 var quadrants = new List<Quadrant> { fieldResults.Yellow, fieldResults.Red, fieldResults.Blue, fieldResults.Green };
                 quadrants.Sort((p, q) => p.Rank - q.Rank);
-                foreach (var q in quadrants)
+                foreach (var q in quadrants.Where(quad => quad.DidTrigger))
                 {
                     this.results.Add(new QuadrantResultModel(q));
                 }
