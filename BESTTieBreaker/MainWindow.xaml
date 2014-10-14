@@ -16,7 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/DefaultTheme.xaml"/>
                 <ResourceDictionary>
-                    <test:MockFieldFactory x:Key="Factory"/>
+                    <best:FieldFactory x:Key="Factory"/>
                     <vms:FieldListViewModel x:Key="ConnectionVM" Factory="{StaticResource Factory}"/>
                     <vms:TieBreakerViewModel x:Key="TieBreakerVM"/>
                 </ResourceDictionary>
