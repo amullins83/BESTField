@@ -27,8 +27,17 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions> 
+        </Grid.ColumnDefinitions>
         <views:FieldConnectionControl ViewModel="{StaticResource ConnectionVM}" x:Name="FieldConnection"/>
-        <views:TieBreakerResult Grid.Column="1" ViewModel="{StaticResource TieBreakerVM}" FieldModel="{Binding Selected, Source={StaticResource ConnectionVM}}"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <views:TieBreakerResult ViewModel="{StaticResource TieBreakerVM}"
+                                FieldModel="{Binding Selected, Source={StaticResource ConnectionVM}}"/>
+            <views:ClockControl Grid.Row="1"/>
+        </Grid>
+
     </Grid>
 </Window>

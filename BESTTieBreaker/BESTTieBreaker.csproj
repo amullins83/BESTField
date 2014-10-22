@@ -77,6 +77,7 @@
     <Compile Include="ViewModels\IPv4ViewModel.cs" />
     <Compile Include="ViewModels\TieBreakerViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Views\ClockControl.cs" />
     <Compile Include="Views\FieldConnectionControl.cs" />
     <Compile Include="Views\FieldControl.cs" />
     <Compile Include="Views\IPAddressControl.cs" />

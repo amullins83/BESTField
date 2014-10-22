@@ -112,9 +112,9 @@
         /// <summary>
         /// Reset the field rankings
         /// </summary>
-        public void Reset()
+        public async void Reset()
         {
-            field.Reset();
+            await field.ResetAsync();
         }
 
         /// <summary>

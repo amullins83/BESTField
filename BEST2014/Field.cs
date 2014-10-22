@@ -87,6 +87,12 @@ namespace BEST2014
 
         private string processQueryBuffer(byte[] buffer)
         {
+            if (buffer == null)
+            {
+                // The field was disconnected
+                return string.Empty;
+            }
+
             string read = Encoding.UTF8.GetString(buffer);
             Messages.Add(read);
             return read;
